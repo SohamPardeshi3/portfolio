@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Soham Pardeshi — Senior Full Stack & Distributed Systems Engineer</title>
+<meta name="description" content="Soham Pardeshi — Senior Full Stack Engineer and AI/ML Engineer specializing in backend and distributed systems. 4+ years building fintech infrastructure at scale." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav class="side-nav" id="sideNav">
+  <div class="side-nav__brand">SP</div>
+  <ul class="side-nav__list">
+    <li><a href="#hero" data-section="hero">whoami</a></li>
+    <li><a href="#about" data-section="about">about</a></li>
+    <li><a href="#experience" data-section="experience">experience</a></li>
+    <li><a href="#projects" data-section="projects">projects</a></li>
+    <li><a href="#skills" data-section="skills">skills</a></li>
+    <li><a href="#contact" data-section="contact">contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <section id="hero" class="hero">
+    <div class="hero__terminal">
+      <div class="win-bar">
+        <span class="dot dot--red"></span>
+        <span class="dot dot--yellow"></span>
+        <span class="dot dot--green"></span>
+        <span class="win-bar__title">soham@portfolio: ~</span>
+      </div>
+      <div class="hero__body" id="bootSequence"></div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="prompt">$ cat about.md</div>
+    <div class="reveal-group">
+      <p class="lede">
+        Senior Full Stack Engineer and AI/ML Engineer with 4+ years leading end-to-end
+        software delivery across React.js/Angular/TypeScript frontends, Spring Boot/Node.js
+        backend services, and cloud-native infrastructure on AWS/Kubernetes — in
+        high-stakes fintech environments.
+      </p>
+      <p>
+        Led migration of a monolithic banking platform to 12+ microservices, architected
+        a distributed transaction engine processing 5,000+ TPS and $50M+ daily volume,
+        and shipped production GenAI/LLM-integrated features including a fraud-detection
+        pipeline that prevented $2M+ in annual losses. Currently designing enterprise-scale
+        full-stack features for a retirement and wealth-management platform serving 18M+
+        participants.
+      </p>
+    </div>
+
+    <div class="metrics reveal-group">
+      <div class="metric">
+        <div class="metric__number" data-count="5000" data-suffix="+">0</div>
+        <div class="metric__label">Transactions / sec</div>
+      </div>
+      <div class="metric">
+        <div class="metric__number" data-count="50" data-prefix="$" data-suffix="M+">0</div>
+        <div class="metric__label">Daily transaction volume</div>
+      </div>
+      <div class="metric">
+        <div class="metric__number" data-count="18" data-suffix="M+">0</div>
+        <div class="metric__label">Platform participants</div>
+      </div>
+      <div class="metric">
+        <div class="metric__number" data-count="2" data-prefix="$" data-suffix="M+">0</div>
+        <div class="metric__label">Fraud losses prevented / yr</div>
+      </div>
+      <div class="metric">
+        <div class="metric__number" data-count="12" data-suffix="+">0</div>
+        <div class="metric__label">Microservices migrated</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="section">
+    <div class="prompt">$ git log --oneline experience/</div>
+
+    <div class="timeline reveal-group">
+      <article class="job">
+        <div class="job__header">
+          <h3>Senior Software Engineer</h3>
+          <span class="job__date">Jun 2026 — Present</span>
+        </div>
+        <div class="job__company">Empower — Enterprise Architecture, Pune, India</div>
+        <ul class="job__bullets">
+          <li>Design and deliver end-to-end full-stack features across Empower's retirement and wealth-management platform serving 18M+ participants — React.js/Angular component libraries backed by Spring Boot microservices on AWS.</li>
+          <li>Lead integration pattern design and API-first modernization strategy within the Enterprise Architecture team, defining current-state and target-state architectures across recordkeeping, contribution processing, and trust platforms.</li>
+          <li>Architect scalable backend services applying event sourcing, CQRS, and circuit breakers to high-volume financial transaction and contribution-processing workflows.</li>
+          <li>Collaborate across payroll, employer, and participant-facing systems to define API contracts and data-integration patterns supporting reconciliation and compliance.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job__header">
+          <h3>Software Development Engineer II</h3>
+          <span class="job__date">Jun 2022 — May 2026</span>
+        </div>
+        <div class="job__company">FIS — Modern Banking Platform, Pune, India</div>
+        <ul class="job__bullets">
+          <li>Led migration of a legacy monolithic banking system to 12+ production microservices using Java, Spring Boot, Spring Cloud, and Kafka — applying the Strangler Fig pattern, tripling deployment frequency.</li>
+          <li>Architected a distributed transaction engine processing 5,000+ TPS and $50M+ daily volume with idempotency, optimistic locking, and full ACID compliance.</li>
+          <li>Reduced P99 latency 40% (500ms → 300ms) through Redis caching, N+1 query elimination, composite indexing, and async processing with CompletableFuture.</li>
+          <li>Deployed a production fraud-detection pipeline (Random Forest, Python FastAPI) at sub-50ms inference latency, reducing false positives 25% and preventing $2M+ in fraudulent transactions annually.</li>
+          <li>Led AWS EKS migration with Multi-AZ infrastructure via Terraform and Helm, reducing cloud costs 15% while maintaining 99.9% uptime.</li>
+          <li>Built a high-throughput notification and event-routing service in Go, replacing a bottlenecked Java service with 35% lower memory footprint.</li>
+          <li>Built an event-driven remediation platform processing 1M+ daily APM metrics from Dynatrace, reducing MTTR 40% and saving 750+ engineering hours annually.</li>
+          <li>Established team-wide standards for testing and API documentation; mentored 3 junior engineers, reducing production defects 20%.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="prompt">$ ls -la projects/</div>
+
+    <div class="project-grid reveal-group" id="githubProjects">
+      <!-- populated by JS with live GitHub data -->
+    </div>
+
+    <div class="prompt prompt--secondary">$ cat notable_builds.md</div>
+    <div class="case-studies reveal-group">
+      <article class="case-study">
+        <h3>Intelligent Decision Support SaaS Platform</h3>
+        <div class="case-study__stack">React.js · TypeScript · Node.js · PostgreSQL · pgvector · OpenAI GPT-4 · LangChain</div>
+        <p>Full-stack multi-tenant SaaS platform with JWT authentication, RBAC, and per-tenant data isolation from schema through UI. Implemented a RAG pipeline using GPT-4, LangChain, and pgvector for semantic document search, improving retrieval relevance 60% via cosine similarity and semantic embeddings. Production-grade LLM integration with exponential backoff, request batching, and circuit breakers.</p>
+      </article>
+      <article class="case-study">
+        <h3>Automated AI-Ops Platform for Infrastructure Monitoring</h3>
+        <div class="case-study__stack">Python · Flask · Go · AWS Lambda · SNS · Dynatrace · CloudWatch</div>
+        <p>Event-driven remediation platform ingesting 1M+ daily APM metrics via Flask and REST APIs, with a serverless Lambda architecture for real-time anomaly detection. Built a Go-based metric aggregation service reducing cold-start frequency 20%, and optimized Lambda cold-start from 3s to under 500ms. Self-healing workflows cut MTTR 40%, saving 750+ engineering hours annually.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="prompt">$ cat skills.json</div>
+    <div class="skills-grid reveal-group">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <div class="tags">
+          <span>Java</span><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>Go</span><span>SQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Frontend</h4>
+        <div class="tags">
+          <span>React.js</span><span>Angular</span><span>Redux</span><span>Next.js</span><span>Webpack</span><span>Jest</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Backend</h4>
+        <div class="tags">
+          <span>Spring Boot</span><span>Spring Cloud</span><span>Node.js</span><span>Express.js</span><span>FastAPI</span><span>Flask</span><span>Go (Gin)</span><span>GraphQL</span><span>gRPC</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Data</h4>
+        <div class="tags">
+          <span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span><span>Redis</span><span>pgvector</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Messaging &amp; Architecture</h4>
+        <div class="tags">
+          <span>Apache Kafka</span><span>Kafka Streams</span><span>RabbitMQ</span><span>Event Sourcing</span><span>CQRS</span><span>Microservices</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>AI / ML</h4>
+        <div class="tags">
+          <span>OpenAI API</span><span>GPT-4</span><span>LangChain</span><span>RAG</span><span>NLP</span><span>scikit-learn</span><span>Vector DBs</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Cloud &amp; DevOps</h4>
+        <div class="tags">
+          <span>AWS EKS</span><span>Lambda</span><span>EC2</span><span>S3</span><span>Docker</span><span>Kubernetes</span><span>Terraform</span><span>Helm</span><span>CI/CD</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Observability</h4>
+        <div class="tags">
+          <span>Prometheus</span><span>Grafana</span><span>ELK Stack</span><span>Zipkin</span><span>Dynatrace</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="prompt">$ cat education.md</div>
+    <div class="edu-grid reveal-group">
+      <div class="edu-card">
+        <h4>Bachelor of Engineering, Computer Engineering</h4>
+        <div class="edu-card__meta">Savitribai Phule Pune University · 2018 — 2022</div>
+        <div class="edu-card__detail">CGPA 9.33/10 — First Class with Distinction</div>
+      </div>
+      <div class="edu-card">
+        <h4>Certifications</h4>
+        <div class="edu-card__detail">AWS Certified Solutions Architect – Associate</div>
+        <div class="edu-card__detail">Certified Product Manager (CPM)</div>
+        <div class="edu-card__detail">Google Data Analytics Professional Certificate</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section section--contact">
+    <div class="prompt">$ whoami --contact</div>
+    <div class="contact-links reveal-group">
+      <a href="mailto:pardeshi.soham2@gmail.com" class="contact-link">
+        <span class="contact-link__label">email</span>
+        <span class="contact-link__value">pardeshi.soham2@gmail.com</span>
+      </a>
+      <a href="https://linkedin.com/in/soham-pardeshi" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link__label">linkedin</span>
+        <span class="contact-link__value">linkedin.com/in/soham-pardeshi</span>
+      </a>
+      <a href="https://github.com/SohamPardeshi3" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link__label">github</span>
+        <span class="contact-link__value">github.com/SohamPardeshi3</span>
+      </a>
+    </div>
+    <div class="footer-note">Pune, India</div>
+  </section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
