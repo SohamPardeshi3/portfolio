@@ -1,254 +1,217 @@
 (() => {
   "use strict";
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+  const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+  const lerp = (a, b, t) => a + (b - a) * t;
 
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const header = document.getElementById("siteHeader");
-  const progressBar = document.getElementById("progressBar");
-  const navLinks = Array.from(document.querySelectorAll(".main-nav a[data-section]"));
-  const architecture = document.querySelector("[data-architecture]");
-  let scrollQueued = false;
+  /* intro */
+  requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.add("ready")));
 
-  function setScrollState() {
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-    if (progressBar) {
-      progressBar.style.width = (scrollable > 0 ? Math.min(100, scrollTop / scrollable * 100) : 0) + "%";
-    }
-    if (header) header.classList.toggle("is-scrolled", scrollTop > 12);
-    updateArchitecture();
-    scrollQueued = false;
+  /* scenes + smoothed progress */
+  const scenes = $$(".scene").map((el) => ({ el, cur: 0, target: 0 }));
+  const header = $("#siteHeader"), bar = $("#progressBar"), chapterLabel = $("#chapterLabel");
+  const chapters = $$("[data-chapter]");
+
+  /* horizontal scene sizing */
+  const hScene = $("#work"), hTrack = $("#hTrack"), hBar = $("#hBar");
+  let hMax = 0;
+  function sizeHorizontal() {
+    hMax = Math.max(0, hTrack.scrollWidth - innerWidth);
+    hScene.style.height = (innerHeight + hMax * 1.05) + "px";
   }
 
-  function requestScrollState() {
-    if (scrollQueued) return;
-    scrollQueued = true;
-    window.requestAnimationFrame(setScrollState);
-  }
-
-  function setupActiveNavigation() {
-    if (!("IntersectionObserver" in window)) return;
-    const sections = navLinks
-      .map((link) => document.getElementById(link.dataset.section))
-      .filter(Boolean);
-    const observer = new IntersectionObserver((entries) => {
-      const candidates = entries.filter((entry) => entry.isIntersecting);
-      if (!candidates.length) return;
-      candidates.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-      const activeId = candidates[0].target.id;
-      navLinks.forEach((link) => {
-        const active = link.dataset.section === activeId;
-        link.classList.toggle("is-active", active);
-        if (active) link.setAttribute("aria-current", "location");
-        else link.removeAttribute("aria-current");
+  /* story words */
+  const story = $("#storyText");
+  const storyWords = [];
+  (function splitStory() {
+    const walk = (node, em) => {
+      Array.from(node.childNodes).forEach((n) => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach((t) => {
+            if (!t) return;
+            if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(" ")); return; }
+            const s = document.createElement("span");
+            s.className = "w" + (em ? " em" : "");
+            s.textContent = t;
+            storyWords.push(s);
+            frag.appendChild(s);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) walk(n, em || n.tagName === "EM");
       });
-    }, { rootMargin: "-34% 0px -54% 0px", threshold: [0, 0.08, 0.25, 0.5] });
-    sections.forEach((section) => observer.observe(section));
+    };
+    walk(story, false);
+    $$("em", story).forEach((e) => e.replaceWith(...e.childNodes));
+  })();
+  function updateStory(p) {
+    const n = storyWords.length;
+    const prog = clamp((p - 0.06) / 0.78) * n;
+    storyWords.forEach((w, i) => {
+      const v = clamp(prog - i);
+      w.style.opacity = (0.14 + 0.86 * v).toFixed(3);
+      w.classList.toggle("lit", v > 0.6);
+    });
   }
 
-  function setupSelectiveReveals() {
-    const headings = Array.from(document.querySelectorAll(".reveal-x"));
-    if (!("IntersectionObserver" in window)) {
-      headings.forEach((heading) => heading.classList.add("is-visible"));
-      return;
+  /* numbers */
+  const stats = $$(".stat");
+  const dots = $$("#statDots li");
+  const fmt = (el, v) => (el.dataset.prefix || "") + Math.round(v).toLocaleString("en-US") + (el.dataset.suffix || "");
+  function updateStats(p) {
+    const n = stats.length;
+    const seg = clamp(p, 0, 0.9999) * n;
+    const idx = Math.floor(seg), local = seg - idx;
+    stats.forEach((s, i) => {
+      const num = $(".stat-num", s);
+      const target = Number(s.dataset.count);
+      let op = 0, y = 0, val = i < idx ? target : 0;
+      if (i === idx) {
+        const inn = i === 0 ? 1 : smooth(0, 0.18, local);
+        const out = i < n - 1 ? 1 - smooth(0.84, 1, local) : 1;
+        op = inn * out; y = (1 - inn) * 46 - (1 - out) * 46;
+        val = target * easeOut(clamp(local / 0.5));
+      }
+      s.style.opacity = op.toFixed(3);
+      s.style.transform = `translateY(${y.toFixed(1)}px)`;
+      s.style.visibility = op > 0.001 ? "visible" : "hidden";
+      num.textContent = fmt(s, reduce ? target : val);
+    });
+    dots.forEach((d, i) => d.classList.toggle("on", i === idx));
+  }
+
+  /* migration */
+  const svg = $("#migSvg"), NS = "http://www.w3.org/2000/svg";
+  const mk = (tag, attrs) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+  const N = 12, CX = 500, CY = 270;
+  const nodes = [], edges = [], packets = [];
+  const rect = mk("rect", { class: "mono-box", x: CX - 118, y: CY - 96, width: 236, height: 192, rx: 16 });
+  const rectLabel = mk("text", { x: CX, y: CY - 112, "text-anchor": "middle" }); rectLabel.textContent = "MONOLITH";
+  const hub = mk("circle", { class: "hub", cx: CX, cy: CY, r: 20 });
+  const hubLabel = mk("text", { x: CX, y: CY + 4, "text-anchor": "middle" }); hubLabel.textContent = "KAFKA"; hubLabel.style.fontSize = "8px";
+  const gEdges = mk("g", {}), gNodes = mk("g", {}), gPk = mk("g", {});
+  svg.append(rect, rectLabel, gEdges, hub, hubLabel, gNodes, gPk);
+  const start = [], end = [];
+  for (let i = 0; i < N; i++) {
+    start.push([CX + ((i % 4) - 1.5) * 52, CY + (Math.floor(i / 4) - 1) * 56]);
+    const a = (i / N) * Math.PI * 2 - Math.PI / 2;
+    end.push([CX + Math.cos(a) * 360, CY + Math.sin(a) * 180]);
+    const c = mk("circle", { class: "node", r: 9 }); gNodes.appendChild(c); nodes.push(c);
+    const e = mk("line", { class: "edge" }); gEdges.appendChild(e); edges.push(e);
+  }
+  const ring = [];
+  for (let i = 0; i < N; i++) { const l = mk("line", { class: "edge" }); gEdges.appendChild(l); ring.push(l); }
+  for (let i = 0; i < N; i++) { const c = mk("circle", { class: "pkt", r: 3.2 }); gPk.appendChild(c); packets.push(c); }
+  const pos = start.map((s) => s.slice());
+  let migP = 0;
+  const caps = $$(".mig-captions .cap");
+  function updateMigration(p) {
+    migP = p;
+    const phase = p < 0.3 ? 0 : p < 0.66 ? 1 : 2;
+    caps.forEach((c, i) => c.classList.toggle("is-on", i === phase));
+    rect.style.opacity = (1 - smooth(0.08, 0.4, p)).toFixed(3);
+    rectLabel.style.opacity = rect.style.opacity;
+    const hubO = smooth(0.35, 0.6, p);
+    hub.style.opacity = hubO; hubLabel.style.opacity = hubO;
+    for (let i = 0; i < N; i++) {
+      const t = easeOut(smooth(0.1 + i * 0.012, 0.52 + i * 0.012, p));
+      const x = lerp(start[i][0], end[i][0], t), y = lerp(start[i][1], end[i][1], t);
+      pos[i][0] = x; pos[i][1] = y;
+      nodes[i].setAttribute("cx", x.toFixed(1)); nodes[i].setAttribute("cy", y.toFixed(1));
+      nodes[i].setAttribute("r", (7 + 3 * t).toFixed(1));
+      const eo = smooth(0.42, 0.72, p);
+      edges[i].setAttribute("x1", x); edges[i].setAttribute("y1", y); edges[i].setAttribute("x2", CX); edges[i].setAttribute("y2", CY);
+      edges[i].style.opacity = (0.35 * eo).toFixed(3);
+      const j = (i + 1) % N;
+      ring[i].setAttribute("x1", x); ring[i].setAttribute("y1", y);
+      ring[i].setAttribute("x2", lerp(start[j][0], end[j][0], t)); ring[i].setAttribute("y2", lerp(start[j][1], end[j][1], t));
+      ring[i].style.opacity = (0.12 * eo).toFixed(3);
     }
-    const observer = new IntersectionObserver((entries, currentObserver) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        currentObserver.unobserve(entry.target);
-      });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.01 });
-    headings.forEach((heading) => observer.observe(heading));
+  }
+  let migVisible = false;
+  function packetLoop(now) {
+    if (!migVisible || reduce) return;
+    const on = smooth(0.66, 0.85, migP);
+    packets.forEach((pk, i) => {
+      const t = ((now / 1700) + i * 0.173) % 1;
+      const fwd = i % 2 === 0;
+      const k = fwd ? t : 1 - t;
+      pk.setAttribute("cx", (lerp(pos[i][0], CX, k)).toFixed(1));
+      pk.setAttribute("cy", (lerp(pos[i][1], CY, k)).toFixed(1));
+      pk.style.opacity = (on * Math.sin(t * Math.PI)).toFixed(3);
+    });
+    requestAnimationFrame(packetLoop);
+  }
+  new IntersectionObserver((es) => {
+    const v = es[0].isIntersecting;
+    if (v && !migVisible) { migVisible = true; requestAnimationFrame(packetLoop); }
+    migVisible = v;
+  }, { threshold: 0 }).observe($("#migration"));
+
+  /* marquee */
+  const mrows = $$(".mrow");
+  function updateMarquee() {
+    const c = $("#contact"), r = c.getBoundingClientRect();
+    const off = (innerHeight - r.top);
+    mrows.forEach((row) => {
+      const w = row.firstElementChild.offsetWidth || 1;
+      const dir = Number(row.dataset.speed);
+      const x = ((off * 0.35 * dir) % w);
+      row.style.transform = `translateX(${(dir < 0 ? x : x - w).toFixed(1)}px)`;
+    });
   }
 
-  const architectureCopy = [
-    { state: "CORE", caption: "TIGHTLY COUPLED / ONE RELEASE PATH" },
-    { state: "STRANGLER PATTERN", caption: "ROUTING / EXTRACTION / EVENT BRIDGES" },
-    { state: "DISTRIBUTED", caption: "SERVICES / EVENTS / INDEPENDENT RELEASES" }
-  ];
+  /* chapter label + header */
+  let lastChapter = "";
+  function updateChrome() {
+    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.width = (max > 0 ? (y / max) * 100 : 0) + "%";
+    header.classList.toggle("is-scrolled", y > 20);
+    let name = chapters[0].dataset.chapter;
+    for (const c of chapters) if (c.getBoundingClientRect().top <= innerHeight * 0.5) name = c.dataset.chapter;
+    if (name !== lastChapter) { chapterLabel.textContent = name; lastChapter = name; }
+  }
 
-  function updateArchitecture() {
-    if (!architecture) return;
-    const chapters = Array.from(architecture.querySelectorAll("[data-arch-chapter]"));
-    if (!chapters.length) return;
-    const targetY = window.innerHeight * 0.52;
-    let activeIndex = 0;
-    let containedIndex = -1;
-    let nearestIndex = 0;
-    let nearestDistance = Infinity;
-
-    chapters.forEach((chapter, index) => {
-      const rect = chapter.getBoundingClientRect();
-      if (rect.top <= targetY && rect.bottom >= targetY) containedIndex = index;
-      const distance = Math.abs((rect.top + rect.bottom) / 2 - targetY);
-      if (distance < nearestDistance) {
-        nearestDistance = distance;
-        nearestIndex = index;
+  /* main loop */
+  let running = false;
+  function frame() {
+    let moving = false;
+    scenes.forEach((s) => {
+      const r = s.el.getBoundingClientRect();
+      const span = r.height - innerHeight;
+      s.target = span > 0 ? clamp(-r.top / span) : 0;
+      const d = s.target - s.cur;
+      s.cur = reduce || Math.abs(d) < 0.0004 ? s.target : s.cur + d * 0.16;
+      if (Math.abs(s.target - s.cur) > 0.0004) moving = true;
+      s.el.style.setProperty("--p", s.cur.toFixed(4));
+      const id = s.el.id;
+      if (id === "story") updateStory(s.cur);
+      else if (id === "scale") updateStats(s.cur);
+      else if (id === "migration") updateMigration(s.cur);
+      else if (id === "work") {
+        hTrack.style.transform = `translate3d(${(-s.cur * hMax).toFixed(1)}px,0,0)`;
+        hBar.style.transform = `scaleX(${s.cur.toFixed(4)})`;
       }
     });
-    activeIndex = containedIndex >= 0 ? containedIndex : nearestIndex;
-
-    const frame = document.getElementById("architectureFrame");
-    const state = document.getElementById("archState");
-    const caption = document.getElementById("archCaption");
-    if (frame && frame.dataset.step !== String(activeIndex)) {
-      frame.dataset.step = String(activeIndex);
-      if (state) state.textContent = architectureCopy[activeIndex].state;
-      if (caption) caption.textContent = architectureCopy[activeIndex].caption;
-    }
-    chapters.forEach((chapter, index) => {
-      chapter.classList.toggle("is-active", index === activeIndex);
-      if (index === activeIndex) chapter.setAttribute("aria-current", "step");
-      else chapter.removeAttribute("aria-current");
-    });
+    updateMarquee(); updateChrome();
+    if (moving) requestAnimationFrame(frame); else running = false;
   }
+  function kick() { if (!running) { running = true; requestAnimationFrame(frame); } }
 
-  function setupJobTimeline() {
-    const jobs = document.querySelectorAll("[data-job]");
-    if (!("IntersectionObserver" in window)) {
-      jobs.forEach((job) => job.classList.add("is-active"));
-      return;
-    }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => entry.target.classList.toggle("is-active", entry.isIntersecting));
-    }, { rootMargin: "-28% 0px -36% 0px", threshold: 0 });
-    jobs.forEach((job) => observer.observe(job));
-  }
+  /* reveals */
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }), { rootMargin: "0px 0px -10% 0px", threshold: 0.05 });
+    $$(".reveal").forEach((el, i) => { el.style.transitionDelay = ((i % 3) * 90) + "ms"; io.observe(el); });
+  } else $$(".reveal").forEach((el) => el.classList.add("in"));
 
-  function setupMetricCounters() {
-    const metrics = Array.from(document.querySelectorAll(".metric-value[data-count]"));
-    if (reduceMotion || !("IntersectionObserver" in window)) return;
-    const observer = new IntersectionObserver((entries, currentObserver) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        currentObserver.unobserve(entry.target);
-        const element = entry.target;
-        const target = Number(element.dataset.count);
-        if (!Number.isFinite(target)) return;
-        const prefix = element.dataset.prefix || "";
-        const suffix = element.dataset.suffix || "";
-        const start = performance.now();
-        const duration = 1350;
-        function tick(now) {
-          const t = Math.min(1, (now - start) / duration);
-          const eased = 1 - Math.pow(1 - t, 3);
-          element.textContent = prefix + Math.round(target * eased).toLocaleString("en-US") + suffix;
-          if (t < 1) window.requestAnimationFrame(tick);
-        }
-        window.requestAnimationFrame(tick);
-      });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
-    metrics.forEach((metric) => observer.observe(metric));
-  }
-
-  function ago(dateString) {
-    const timestamp = Date.parse(dateString);
-    if (!Number.isFinite(timestamp)) return "";
-    const days = Math.max(0, Math.floor((Date.now() - timestamp) / 86400000));
-    if (days === 0) return "today";
-    if (days === 1) return "1 day ago";
-    if (days < 30) return days + " days ago";
-    const months = Math.floor(days / 30);
-    if (months < 12) return months + (months === 1 ? " mo ago" : " mos ago");
-    const years = Math.floor(months / 12);
-    return years + (years === 1 ? " yr ago" : " yrs ago");
-  }
-
-  async function fetchProject(repo) {
-    const response = await fetch("https://api.github.com/repos/SohamPardeshi3/" + encodeURIComponent(repo), {
-      headers: { Accept: "application/vnd.github+json" },
-      cache: "no-cache"
-    });
-    if (!response.ok) throw new Error("GitHub repository metadata unavailable");
-    return response.json();
-  }
-
-  function setupProjectMetadata() {
-    document.querySelectorAll(".project-row[data-repo]").forEach(async (row) => {
-      const meta = row.querySelector("[data-meta]");
-      if (!meta) return;
-      const repo = row.dataset.repo;
-      const name = row.querySelector(".project-name");
-      try {
-        const data = await fetchProject(repo);
-        const parts = [];
-        if (Number.isFinite(data.stargazers_count)) parts.push("★ " + data.stargazers_count);
-        if (data.language) parts.push(data.language);
-        const updated = ago(data.updated_at);
-        if (updated) parts.push("updated " + updated);
-        if (!parts.length) return;
-        const arrow = document.createElement("i");
-        arrow.setAttribute("aria-hidden", "true");
-        arrow.textContent = "↗";
-        meta.replaceChildren(document.createTextNode(parts.join(" · ")), arrow);
-        meta.setAttribute("aria-label", (name ? name.textContent : repo) + ": " + parts.join(", "));
-      } catch (_error) {
-        // Keep the static GitHub label and working repository link.
-      }
-    });
-  }
-
-  function setupHeroParallax() {
-    const orbit = document.querySelector(".hero-orbit");
-    if (!orbit || reduceMotion || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-    let pointerQueued = false;
-    let x = 0;
-    let y = 0;
-    window.addEventListener("pointermove", (event) => {
-      x = (event.clientX / window.innerWidth - 0.5) * 13;
-      y = (event.clientY / window.innerHeight - 0.5) * 10;
-      if (pointerQueued) return;
-      pointerQueued = true;
-      window.requestAnimationFrame(() => {
-        orbit.style.setProperty("--pointer-x", x.toFixed(1) + "px");
-        orbit.style.setProperty("--pointer-y", y.toFixed(1) + "px");
-        pointerQueued = false;
-      });
-    }, { passive: true });
-  }
-
-  function setupProjectHighlights() {
-    const projects = document.querySelectorAll(".project-row");
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-    projects.forEach((project) => {
-      let queued = false;
-      let x = "50%";
-      let y = "50%";
-      project.addEventListener("pointermove", (event) => {
-        const rect = project.getBoundingClientRect();
-        x = ((event.clientX - rect.left) / rect.width * 100).toFixed(1) + "%";
-        y = ((event.clientY - rect.top) / rect.height * 100).toFixed(1) + "%";
-        if (queued) return;
-        queued = true;
-        window.requestAnimationFrame(() => {
-          project.style.setProperty("--pointer-x", x);
-          project.style.setProperty("--pointer-y", y);
-          queued = false;
-        });
-      }, { passive: true });
-    });
-  }
-
-  function setupToolbox() {
-    document.querySelectorAll("[data-tool-group]").forEach((group) => {
-      group.tabIndex = 0;
-      group.addEventListener("focus", () => group.classList.add("is-lit"));
-      group.addEventListener("blur", () => group.classList.remove("is-lit"));
-      group.addEventListener("pointerenter", () => group.classList.add("is-lit"));
-      group.addEventListener("pointerleave", () => group.classList.remove("is-lit"));
-    });
-  }
-
-  setupActiveNavigation();
-  setupSelectiveReveals();
-  setupJobTimeline();
-  setupMetricCounters();
-  setupProjectMetadata();
-  setupHeroParallax();
-  setupProjectHighlights();
-  setupToolbox();
-  window.addEventListener("scroll", requestScrollState, { passive: true });
-  window.addEventListener("resize", requestScrollState, { passive: true });
-  setScrollState();
+  addEventListener("scroll", kick, { passive: true });
+  addEventListener("resize", () => { sizeHorizontal(); kick(); }, { passive: true });
+  addEventListener("load", () => { sizeHorizontal(); kick(); });
+  sizeHorizontal(); kick();
 })();
-
