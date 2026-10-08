@@ -4,424 +4,130 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b0d0f">
-  <meta name="description" content="Soham Pardeshi builds reliable software across distributed systems, full-stack engineering and production AI/ML.">
+  <meta name="description" content="Soham Pardeshi builds reliable distributed systems, full-stack products and production AI/ML in fintech.">
   <title>Soham Pardeshi — Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=portfolio-redesign-1">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=2">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-  <div class="scroll-progress" id="progressBar" aria-hidden="true"></div>
   <header class="site-header" id="siteHeader">
-    <a class="brand" href="#hero" aria-label="Soham Pardeshi — back to top"><span>SP</span><i></i></a>
-    <nav class="main-nav" aria-label="Main navigation">
-      <a href="#engineer" data-section="engineer">Engineer</a>
-      <a href="#scale" data-section="scale">Scale</a>
-      <a href="#architecture" data-section="architecture">Architecture</a>
-      <a href="#experience" data-section="experience">Experience</a>
-      <a href="#work" data-section="work">Work</a>
-      <a href="#toolbox" data-section="toolbox">Toolbox</a>
+    <a class="brand" href="#hero" aria-label="Soham Pardeshi, top">SP</a>
+    <span class="chapter" id="chapterLabel" aria-hidden="true">Intro</span>
+    <nav aria-label="Main navigation">
+      <a href="#work">Work</a><a href="#path">Path</a><a href="#lab">Lab</a><a href="#contact">Contact</a>
     </nav>
-    <a class="header-contact" href="#contact"><span>Start a conversation</span><b aria-hidden="true">↗</b></a>
+    <div class="progress" id="progressBar"></div>
   </header>
 
   <main>
-    <section class="hero" id="hero" aria-labelledby="hero-title">
-      <div class="hero-grid" aria-hidden="true"></div>
-      <div class="hero-orbit" aria-hidden="true">
-        <svg viewBox="0 0 760 620" role="presentation">
-          <defs>
-            <radialGradient id="coreGlow">
-              <stop offset="0" stop-color="#e9ad58" stop-opacity=".25"/>
-              <stop offset="1" stop-color="#e9ad58" stop-opacity="0"/>
-            </radialGradient>
-            <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
-              <feGaussianBlur stdDeviation="5" result="blur"/>
-              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-          <circle cx="395" cy="308" r="205" fill="url(#coreGlow)"/>
-          <g class="orbit-rings" fill="none" stroke="#626363" stroke-opacity=".25">
-            <ellipse cx="395" cy="308" rx="285" ry="112" transform="rotate(-29 395 308)"/>
-            <ellipse cx="395" cy="308" rx="245" ry="166" transform="rotate(29 395 308)"/>
-            <ellipse cx="395" cy="308" rx="170" ry="246" transform="rotate(72 395 308)"/>
-          </g>
-          <g class="signal-paths" fill="none" stroke="#d99b4d" stroke-opacity=".48" stroke-width="1">
-            <path d="M108 414 250 356 395 308 552 228 673 179"/>
-            <path d="M174 170 292 242 395 308 502 408 638 462"/>
-            <path d="M240 527 298 402 395 308 463 194 528 103"/>
-            <path d="M92 293 230 286 395 308 535 326 704 303"/>
-            <path d="M306 95 340 196 395 308 430 430 457 545"/>
-          </g>
-          <g class="signal-dashes" fill="none" stroke="#f1c27d" stroke-width="2" stroke-linecap="round">
-            <path d="M108 414 250 356 395 308 552 228 673 179"/>
-            <path d="M174 170 292 242 395 308 502 408 638 462"/>
-            <path d="M240 527 298 402 395 308 463 194 528 103"/>
-          </g>
-          <g class="orbit-nodes" filter="url(#softGlow)">
-            <circle cx="395" cy="308" r="7" class="node node--core"/>
-            <circle cx="250" cy="356" r="4" class="node"/>
-            <circle cx="552" cy="228" r="4" class="node"/>
-            <circle cx="292" cy="242" r="3.5" class="node"/>
-            <circle cx="502" cy="408" r="3.5" class="node"/>
-            <circle cx="298" cy="402" r="4" class="node"/>
-            <circle cx="463" cy="194" r="3.5" class="node"/>
-            <circle cx="535" cy="326" r="3" class="node node--quiet"/>
-            <circle cx="340" cy="196" r="3" class="node node--quiet"/>
-            <circle cx="638" cy="462" r="3" class="node node--quiet"/>
-          </g>
-          <g class="orbit-labels" fill="#9b9a94">
-            <text x="495" y="153">EVENT STREAM</text>
-            <text x="150" y="468">TRANSACTION</text>
-            <text x="557" y="428">SYSTEMS</text>
-            <text x="455" y="525">SIGNAL / 01</text>
-          </g>
-        </svg>
-        <div class="orbit-caption"><span class="live-dot"></span> Systems in motion <span class="caption-sep">/</span> Pune, IN</div>
-      </div>
-      <div class="hero-content">
-        <p class="eyebrow"><span class="eyebrow-index">01</span> Software engineer <span class="eyebrow-rule"></span> Distributed systems · Full stack · AI/ML</p>
-        <h1 id="hero-title">Soham<br><span>Pardeshi</span></h1>
-        <p class="hero-statement">I build reliable systems<br>for <em>money in motion.</em></p>
-        <div class="hero-bottom">
-          <a class="text-link" href="#engineer"><span>Explore the work</span><b aria-hidden="true">↓</b></a>
-          <span class="hero-index">SYSTEMS / ENGINEERING <span>—</span> 2026</span>
+    <!-- 1 · HERO -->
+    <section class="scene" id="hero" data-chapter="Intro" style="--h:230vh" aria-label="Introduction">
+      <div class="stage hero-stage">
+        <div class="glow" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <p class="mono hero-kicker">Senior Software Engineer</p>
+          <h1 class="hero-title" aria-label="Soham Pardeshi">
+            <span class="line"><span class="word" aria-hidden="true">Soham</span></span>
+            <span class="line"><span class="word" aria-hidden="true">Pardeshi</span></span>
+          </h1>
+          <p class="hero-sub">Distributed systems, full stack and applied AI — built for money that has to move correctly.</p>
         </div>
-      </div>
-      <div class="hero-side-label" aria-hidden="true">ENGINEERING / 01—10</div>
-    </section>
-
-    <section class="section engineer-section" id="engineer" aria-labelledby="engineer-title">
-      <div class="section-kicker"><span>01</span><span>Engineer</span><i></i><span>Principles in practice</span></div>
-      <div class="engineer-layout">
-        <h2 class="display-heading reveal-x" id="engineer-title">Build for the<br><span>real world.</span></h2>
-        <div class="engineer-copy">
-          <p class="copy-lede">I work where software has to keep its promises: across services, under load, and when the data matters.</p>
-          <p>Senior Full Stack Engineer and AI/ML Engineer with 4+ years leading end-to-end software delivery across React.js, Angular and TypeScript frontends, Spring Boot and Node.js services, and cloud-native infrastructure on AWS and Kubernetes—in high-stakes fintech environments.</p>
-          <p>From modernizing a monolithic banking platform into production microservices to building transaction processing and production AI features, my focus is the engineering around the system: clear boundaries, safe change, useful signals and dependable execution.</p>
-        </div>
-      </div>
-      <div class="principle-strip" aria-label="Engineering principles">
-        <span><b>01</b> Design for failure</span><span><b>02</b> Make the flow visible</span><span><b>03</b> Keep change safe</span><span><b>04</b> Ship for the operator</span>
+        <div class="scroll-cue mono" aria-hidden="true"><span></span>Scroll</div>
       </div>
     </section>
 
-    <section class="section scale-section" id="scale" aria-labelledby="scale-title">
-      <div class="scale-ornament" aria-hidden="true"><span>THROUGHPUT</span><i></i><span>RELIABILITY</span><i></i><span>REACH</span></div>
-      <div class="section-kicker"><span>02</span><span>Scale</span><i></i><span>Measured in production</span></div>
-      <div class="scale-intro">
-        <h2 class="display-heading reveal-x" id="scale-title">Systems have<br><span>real weight.</span></h2>
-        <p>Work measured by the volume it carries, the people it serves, and the failures it prevents.</p>
+    <!-- 2 · STORY -->
+    <section class="scene" id="story" data-chapter="Story" style="--h:420vh" aria-label="What I do">
+      <div class="stage">
+        <p class="story" id="storyText">I build the systems behind <em>money movement</em> — fast enough for <em>5,000 transactions a second</em>, clear enough to keep evolving, and now at the scale of <em>18 million retirement savers.</em></p>
       </div>
-      <div class="metric-field">
-        <article class="metric metric--primary">
-          <span class="metric-index">01 / TRANSACTION ENGINE</span>
-          <p class="metric-value" data-count="5000" data-suffix="+">5,000+</p>
-          <p class="metric-label">transactions per second</p>
-          <span class="metric-line" aria-hidden="true"></span>
-        </article>
-        <article class="metric metric--volume">
-          <span class="metric-index">02 / DAILY VOLUME</span>
-          <p class="metric-value" data-count="50" data-prefix="$" data-suffix="M+">$50M+</p>
-          <p class="metric-label">daily transaction volume</p>
-          <span class="metric-line" aria-hidden="true"></span>
-        </article>
-        <article class="metric metric--participants">
-          <span class="metric-index">03 / PLATFORM REACH</span>
-          <p class="metric-value" data-count="18" data-suffix="M+">18M+</p>
-          <p class="metric-label">retirement platform participants</p>
-          <span class="metric-line" aria-hidden="true"></span>
-        </article>
-        <article class="metric metric--fraud">
-          <span class="metric-index">04 / FRAUD DETECTION</span>
-          <p class="metric-value" data-count="2" data-prefix="$" data-suffix="M+">$2M+</p>
-          <p class="metric-label">annual losses prevented</p>
-          <span class="metric-line" aria-hidden="true"></span>
-        </article>
-        <article class="metric metric--services">
-          <span class="metric-index">05 / PLATFORM MODERNIZATION</span>
-          <p class="metric-value" data-count="12" data-suffix="+">12+</p>
-          <p class="metric-label">production microservices migrated</p>
-          <span class="metric-line" aria-hidden="true"></span>
-        </article>
-      </div>
-      <p class="scale-footnote"><span>FIG. 01</span> Selected outcomes from production engineering work.</p>
     </section>
 
-    <section class="section architecture-section" id="architecture" data-architecture aria-labelledby="architecture-title">
-      <div class="section-kicker"><span>03</span><span>Architecture</span><i></i><span>Change the shape, preserve the flow</span></div>
-      <div class="architecture-heading">
-        <h2 class="display-heading reveal-x" id="architecture-title">From one core<br>to <span>systems in motion.</span></h2>
-        <p>During the banking-platform migration, the architecture moved from a tightly coupled core toward independently deployable services and event-driven flows.</p>
-      </div>
-      <div class="architecture-story">
-        <div class="architecture-chapters">
-          <article class="architecture-chapter is-active" data-arch-chapter="0">
-            <span class="chapter-index">PHASE 01 / THE CORE</span>
-            <h3>One center<br>of gravity.</h3>
-            <p>A legacy banking monolith held the critical path. Changes crossed boundaries that were difficult to release and scale independently.</p>
-            <span class="chapter-note"><i></i> CLIENT → MONOLITH → DATABASE</span>
-          </article>
-          <article class="architecture-chapter" data-arch-chapter="1">
-            <span class="chapter-index">PHASE 02 / THE STRANGLER</span>
-            <h3>Separate the<br>responsibilities.</h3>
-            <p>Using the Strangler Fig pattern, the platform evolved through 12+ production microservices built with Java, Spring Boot, Spring Cloud and Kafka.</p>
-            <span class="chapter-note"><i></i> INCREMENTAL CHANGE / SAFE ROUTING</span>
-          </article>
-          <article class="architecture-chapter" data-arch-chapter="2">
-            <span class="chapter-index">PHASE 03 / DISTRIBUTED</span>
-            <h3>Let each part<br>move with purpose.</h3>
-            <p>Services, events, data stores and observability form a more legible system. The work tripled deployment frequency while preserving transaction integrity.</p>
-            <span class="chapter-note"><i></i> SERVICES / EVENTS / SIGNALS</span>
-          </article>
+    <!-- 3 · NUMBERS -->
+    <section class="scene" id="scale" data-chapter="Scale" style="--h:520vh" aria-label="Impact in numbers">
+      <div class="stage numbers-stage">
+        <div class="stat-stack" id="statStack">
+          <div class="stat" data-count="5000" data-suffix="+" data-label="transactions per second"><div class="stat-num" aria-hidden="true">0</div><p class="stat-label mono">transactions per second</p><p class="stat-line">A distributed transaction engine with idempotency, optimistic locking and full ACID guarantees.</p></div>
+          <div class="stat" data-count="50" data-prefix="$" data-suffix="M+" data-label="daily volume"><div class="stat-num" aria-hidden="true">0</div><p class="stat-label mono">moved every day</p><p class="stat-line">Daily volume through the same engine, with P99 latency cut 40% (500 → 300 ms).</p></div>
+          <div class="stat" data-count="12" data-suffix="+" data-label="production microservices"><div class="stat-num" aria-hidden="true">0</div><p class="stat-label mono">production microservices</p><p class="stat-line">Carved out of a monolith with the Strangler Fig pattern — deployment frequency up 3×.</p></div>
+          <div class="stat" data-count="2" data-prefix="$" data-suffix="M+" data-label="fraud prevented annually"><div class="stat-num" aria-hidden="true">0</div><p class="stat-label mono">fraud prevented per year</p><p class="stat-line">An ML pipeline with sub-50 ms inference that also cut false positives by 25%.</p></div>
         </div>
-        <div class="architecture-pin">
-          <div class="architecture-frame" id="architectureFrame" data-step="0">
-            <div class="architecture-frame__top"><span>PLATFORM / EVOLUTION</span><span class="arch-state"><i></i><b id="archState">CORE</b></span></div>
-            <svg class="architecture-diagram" viewBox="0 0 840 520" role="img" aria-label="Architecture transitions from a client, monolith and database into a distributed service architecture">
-              <g class="arch-layer arch-layer--core">
-                <path class="arch-wire" d="M178 258H312M528 258H660"/>
-                <rect class="arch-node arch-node--small" x="52" y="226" width="126" height="64" rx="2"/>
-                <text class="arch-node-label" x="115" y="255">CLIENT</text><text class="arch-node-sub" x="115" y="274">WEB / API</text>
-                <rect class="arch-node arch-node--large" x="312" y="192" width="216" height="132" rx="2"/>
-                <text class="arch-node-label" x="420" y="250">MONOLITH</text><text class="arch-node-sub" x="420" y="274">BANKING CORE</text>
-                <rect class="arch-node arch-node--small" x="660" y="226" width="126" height="64" rx="2"/>
-                <text class="arch-node-label" x="723" y="255">DATABASE</text><text class="arch-node-sub" x="723" y="274">LEDGER</text>
-                <circle class="arch-port" cx="312" cy="258" r="4"/><circle class="arch-port" cx="528" cy="258" r="4"/>
-              </g>
-              <g class="arch-layer arch-layer--bridge">
-                <path class="arch-wire arch-wire--faint" d="M90 254H210M284 254H355M485 254H565M635 254H726"/>
-                <path class="arch-wire arch-wire--event" d="M420 302V365H598M418 302V365H240"/>
-                <rect class="arch-node arch-node--small" x="34" y="222" width="122" height="64" rx="2"/>
-                <text class="arch-node-label" x="95" y="251">CLIENT</text><text class="arch-node-sub" x="95" y="270">REQUEST</text>
-                <rect class="arch-node arch-node--small arch-node--accent" x="210" y="222" width="146" height="64" rx="2"/>
-                <text class="arch-node-label" x="283" y="251">API GATEWAY</text><text class="arch-node-sub" x="283" y="270">ROUTE / STRANGLE</text>
-                <rect class="arch-node arch-node--service" x="380" y="188" width="116" height="56" rx="2"/>
-                <text class="arch-node-label" x="438" y="222">SERVICE A</text>
-                <rect class="arch-node arch-node--service" x="518" y="188" width="116" height="56" rx="2"/>
-                <text class="arch-node-label" x="576" y="222">SERVICE B</text>
-                <rect class="arch-node arch-node--service" x="380" y="270" width="116" height="56" rx="2"/>
-                <text class="arch-node-label" x="438" y="304">SERVICE C</text>
-                <rect class="arch-node arch-node--service" x="518" y="270" width="116" height="56" rx="2"/>
-                <text class="arch-node-label" x="576" y="304">SERVICE D</text>
-                <rect class="arch-node arch-node--event" x="270" y="344" width="298" height="46" rx="2"/>
-                <text class="arch-node-label" x="419" y="373">KAFKA / EVENTS</text>
-                <text class="arch-aside" x="654" y="203">12+ SERVICES</text>
-                <text class="arch-aside" x="654" y="222">IN PRODUCTION</text>
-                <text class="arch-aside" x="654" y="342">OLD CORE</text>
-                <path class="arch-wire arch-wire--old" d="M634 300H712V320"/>
-                <rect class="arch-node arch-node--ghost" x="676" y="320" width="104" height="52" rx="2"/>
-                <text class="arch-node-sub" x="728" y="350">MONOLITH</text>
-              </g>
-              <g class="arch-layer arch-layer--distributed">
-                <path class="arch-wire" d="M119 258H242M340 258H376M465 258H498M588 258H620M705 258H750"/>
-                <path class="arch-wire arch-wire--event" d="M420 292V344M530 292V344M640 292V344M470 390V433"/>
-                <rect class="arch-node arch-node--small" x="32" y="226" width="102" height="64" rx="2"/>
-                <text class="arch-node-label" x="83" y="254">CLIENT</text><text class="arch-node-sub" x="83" y="273">WEB / MOBILE</text>
-                <rect class="arch-node arch-node--accent" x="242" y="226" width="98" height="64" rx="2"/>
-                <text class="arch-node-label" x="291" y="254">API</text><text class="arch-node-sub" x="291" y="273">GATEWAY</text>
-                <rect class="arch-node arch-node--service" x="376" y="186" width="90" height="54" rx="2"/>
-                <text class="arch-node-label" x="421" y="219">SERVICE A</text>
-                <rect class="arch-node arch-node--service" x="498" y="186" width="90" height="54" rx="2"/>
-                <text class="arch-node-label" x="543" y="219">SERVICE B</text>
-                <rect class="arch-node arch-node--service" x="376" y="276" width="90" height="54" rx="2"/>
-                <text class="arch-node-label" x="421" y="309">SERVICE C</text>
-                <rect class="arch-node arch-node--service" x="498" y="276" width="90" height="54" rx="2"/>
-                <text class="arch-node-label" x="543" y="309">SERVICE D</text>
-                <rect class="arch-node arch-node--event" x="376" y="344" width="212" height="46" rx="2"/>
-                <text class="arch-node-label" x="482" y="373">KAFKA / EVENTS</text>
-                <rect class="arch-node arch-node--data" x="620" y="226" width="88" height="64" rx="2"/>
-                <text class="arch-node-label" x="664" y="253">REDIS</text><text class="arch-node-sub" x="664" y="273">CACHE</text>
-                <rect class="arch-node arch-node--data" x="750" y="226" width="78" height="64" rx="2"/>
-                <text class="arch-node-label" x="789" y="253">DATA</text><text class="arch-node-sub" x="789" y="273">STORES</text>
-                <rect class="arch-node arch-node--observe" x="376" y="433" width="212" height="46" rx="2"/>
-                <text class="arch-node-label" x="482" y="462">OBSERVABILITY</text>
-                <text class="arch-aside" x="31" y="135">JAVA / SPRING BOOT</text>
-                <text class="arch-aside" x="660" y="135">INDEPENDENT RELEASES</text>
-              </g>
-            </svg>
-            <div class="architecture-frame__bottom"><span id="archCaption">TIGHTLY COUPLED / ONE RELEASE PATH</span><span class="arch-progress"><i id="archProgress"></i></span></div>
-            <div class="architecture-mobile" aria-hidden="true">
-              <span>CLIENT</span><i></i><span>API GATEWAY</span><i></i><span>SERVICES A—D</span><i></i><span>KAFKA / EVENTS</span><i></i><span>REDIS + DATA</span><i></i><span>OBSERVABILITY</span>
-            </div>
-          </div>
-          <p class="diagram-note"><span>FIG. 02</span> A simplified view of the migration story.</p>
+        <ol class="dots" id="statDots" aria-hidden="true"><li></li><li></li><li></li><li></li></ol>
+      </div>
+    </section>
+
+    <!-- 4 · MIGRATION -->
+    <section class="scene" id="migration" data-chapter="Migration" style="--h:480vh" aria-label="Monolith to microservices">
+      <div class="stage mig-stage">
+        <svg id="migSvg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A monolith splitting into twelve connected services around an event backbone"></svg>
+        <div class="mig-captions">
+          <div class="cap is-on"><h2>One core.</h2><p>Every change ships together. Every team waits on every other.</p></div>
+          <div class="cap"><h2>Carve out the edges.</h2><p>Route, extract, bridge with events — no big-bang rewrite.</p></div>
+          <div class="cap"><h2>12+ services.</h2><p>Independent releases. Cross-team dependencies gone.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="section experience-section" id="experience" aria-labelledby="experience-title">
-      <div class="section-kicker"><span>04</span><span>Experience</span><i></i><span>Selected engineering work</span></div>
-      <div class="experience-heading">
-        <h2 class="display-heading reveal-x" id="experience-title">Work with<br><span>consequence.</span></h2>
-        <p>Product engineering across retirement platforms, modern banking infrastructure and production systems.</p>
-      </div>
-      <div class="timeline">
-        <article class="job" data-job>
-          <div class="job-rail"><span class="job-index">01</span><span class="job-line"></span><span class="job-period">JUN 2026 — PRESENT</span></div>
-          <div class="job-content">
-            <div class="job-heading">
-              <div><p class="job-kicker">EMPOWER <span>/</span> ENTERPRISE ARCHITECTURE</p><h3>Senior Software Engineer</h3></div>
-              <span class="job-location">Pune, India</span>
-            </div>
-            <p class="job-context">Retirement and wealth-management platform <span>·</span> 18M+ participants</p>
-            <ul class="job-highlights">
-              <li>Design and deliver end-to-end full-stack features across Empower's retirement and wealth-management platform serving 18M+ participants—React.js/Angular component libraries backed by Spring Boot microservices on AWS.</li>
-              <li>Lead integration pattern design and API-first modernization strategy within the Enterprise Architecture team, defining current-state and target-state architectures across recordkeeping, contribution processing and trust platforms.</li>
-              <li>Architect scalable backend services applying event sourcing, CQRS and circuit breakers to high-volume financial transaction and contribution-processing workflows.</li>
-              <li>Collaborate across payroll, employer and participant-facing systems to define API contracts and data-integration patterns supporting reconciliation and compliance.</li>
-            </ul>
-            <div class="job-tags" aria-label="Technologies"><span>React.js</span><span>Angular</span><span>Spring Boot</span><span>AWS</span><span>CQRS</span><span>Event sourcing</span></div>
-          </div>
-        </article>
-        <article class="job" data-job>
-          <div class="job-rail"><span class="job-index">02</span><span class="job-line"></span><span class="job-period">JUN 2022 — MAY 2026</span></div>
-          <div class="job-content">
-            <div class="job-heading">
-              <div><p class="job-kicker">FIS <span>/</span> MODERN BANKING PLATFORM</p><h3>Software Development Engineer II</h3></div>
-              <span class="job-location">Pune, India</span>
-            </div>
-            <p class="job-context">Modernization, transaction processing and production operations</p>
-            <ul class="job-highlights">
-              <li>Led migration of a legacy monolithic banking system to 12+ production microservices using Java, Spring Boot, Spring Cloud and Kafka—applying the Strangler Fig pattern and tripling deployment frequency.</li>
-              <li>Architected a distributed transaction engine processing 5,000+ TPS and $50M+ daily volume with idempotency, optimistic locking and full ACID compliance.</li>
-              <li>Reduced P99 latency 40% (500ms → 300ms) through Redis caching, N+1 query elimination, composite indexing and async processing with CompletableFuture.</li>
-              <li>Deployed a production fraud-detection pipeline (Random Forest, Python FastAPI) at sub-50ms inference latency, reducing false positives 25% and preventing $2M+ in fraudulent transactions annually.</li>
-              <li>Led AWS EKS migration with Multi-AZ infrastructure via Terraform and Helm, reducing cloud costs 15% while maintaining 99.9% uptime.</li>
-              <li>Built a high-throughput notification and event-routing service in Go, replacing a bottlenecked Java service with 35% lower memory footprint.</li>
-              <li>Built an event-driven remediation platform processing 1M+ daily APM metrics from Dynatrace, reducing MTTR 40% and saving 750+ engineering hours annually.</li>
-              <li>Established team-wide standards for testing and API documentation; mentored 3 junior engineers, reducing production defects 20%.</li>
-            </ul>
-            <div class="job-tags" aria-label="Technologies"><span>Java</span><span>Spring Cloud</span><span>Kafka</span><span>Redis</span><span>Python</span><span>AWS EKS</span><span>Terraform</span><span>Go</span><span>Dynatrace</span></div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section work-section" id="work" aria-labelledby="work-title">
-      <div class="section-kicker"><span>05</span><span>Selected work</span><i></i><span>Built in the open</span></div>
-      <div class="work-heading">
-        <h2 class="display-heading reveal-x" id="work-title">Small systems.<br><span>Serious details.</span></h2>
-        <a class="text-link" href="https://github.com/SohamPardeshi3" target="_blank" rel="noopener noreferrer">All repositories <b aria-hidden="true">↗</b></a>
-      </div>
-      <div class="project-list" id="githubProjects">
-        <a class="project-row" href="https://github.com/SohamPardeshi3/distributed-rate-limiter" target="_blank" rel="noopener noreferrer" data-repo="distributed-rate-limiter">
-          <span class="project-number">01</span><span class="project-name">Distributed Rate Limiter</span>
-          <span class="project-description">Redis-backed token bucket rate limiter with atomic Lua-script refill/consume logic for correctness under concurrent multi-instance access.</span>
-          <span class="project-meta" data-meta>Source on GitHub <i aria-hidden="true">↗</i></span>
-        </a>
-        <a class="project-row" href="https://github.com/SohamPardeshi3/idempotent-request-handler" target="_blank" rel="noopener noreferrer" data-repo="idempotent-request-handler">
-          <span class="project-number">02</span><span class="project-name">Idempotent Request Handler</span>
-          <span class="project-description">Redis-backed idempotency guard for HTTP APIs—atomic SET NX claim pattern with body-hash scoping to reject key reuse with mismatched payloads.</span>
-          <span class="project-meta" data-meta>Source on GitHub <i aria-hidden="true">↗</i></span>
-        </a>
-        <a class="project-row" href="https://github.com/SohamPardeshi3/mcp-tool-guard" target="_blank" rel="noopener noreferrer" data-repo="mcp-tool-guard">
-          <span class="project-number">03</span><span class="project-name">MCP Tool Guard</span>
-          <span class="project-description">Per-tool cost-aware rate limiting and call deduplication for MCP servers—drop into your own server, no gateway required.</span>
-          <span class="project-meta" data-meta>Source on GitHub <i aria-hidden="true">↗</i></span>
-        </a>
-        <a class="project-row" href="https://github.com/SohamPardeshi3/txn-risk-console" target="_blank" rel="noopener noreferrer" data-repo="txn-risk-console">
-          <span class="project-number">04</span><span class="project-name">Transaction Risk Console</span>
-          <span class="project-description">Real-time transaction anomaly detection dashboard with rule-based fraud scoring, live WebSocket updates and haversine-distance impossible-travel detection.</span>
-          <span class="project-meta" data-meta>Source on GitHub <i aria-hidden="true">↗</i></span>
-        </a>
-        <a class="project-row" href="https://github.com/SohamPardeshi3/durable-kv" target="_blank" rel="noopener noreferrer" data-repo="durable-kv">
-          <span class="project-number">05</span><span class="project-name">Durable Key-Value Store</span>
-          <span class="project-description">Embedded key-value store in Rust with a checksummed write-ahead log, atomic segment compaction and a SIGKILL-based crash-recovery test.</span>
-          <span class="project-meta" data-meta>Source on GitHub <i aria-hidden="true">↗</i></span>
-        </a>
-      </div>
-      <p class="project-footnote"><span>LIVE REPOSITORY METADATA</span> Stars, language and update time load when GitHub responds. Each project remains linked if it does not.</p>
-    </section>
-
-    <section class="section ai-section" id="ai" aria-labelledby="ai-title">
-      <div class="section-kicker"><span>06</span><span>AI / ML in production</span><i></i><span>Systems around the model</span></div>
-      <div class="ai-heading">
-        <div><p class="mono-overline">RETRIEVAL → REASONING → DECISION SUPPORT</p><h2 class="display-heading reveal-x" id="ai-title">Useful AI needs<br><span>an engineering system.</span></h2></div>
-        <p>Production AI work includes the retrieval path, service boundaries and failure handling around inference—not only the model call.</p>
-      </div>
-      <div class="pipeline" aria-label="Document input flows through retrieval, language model reasoning and grounded decision support">
-        <div class="pipeline-track" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-        <article class="pipeline-step"><span class="pipeline-number">01</span><h3>Input</h3><p>Source documents</p><small>KNOWLEDGE</small></article>
-        <article class="pipeline-step"><span class="pipeline-number">02</span><h3>Retrieve</h3><p>Embeddings + pgvector</p><small>SEMANTIC SEARCH</small></article>
-        <article class="pipeline-step"><span class="pipeline-number">03</span><h3>Reason</h3><p>GPT-4 + LangChain</p><small>RAG PIPELINE</small></article>
-        <article class="pipeline-step"><span class="pipeline-number">04</span><h3>Decide</h3><p>Grounded results</p><small>DECISION SUPPORT</small></article>
-        <article class="pipeline-step"><span class="pipeline-number">05</span><h3>Act</h3><p>Next step for the user</p><small>SAAS WORKFLOW</small></article>
-      </div>
-      <div class="ai-case">
-        <div class="ai-case__index">CASE / 01<br><span>INTELLIGENT DECISION SUPPORT</span></div>
-        <div class="ai-case__body">
-          <h3>Retrieval that earns its answer.</h3>
-          <div class="case-detail-grid">
-            <div><span>PROBLEM</span><p>Make semantic document search useful inside a multi-tenant decision-support product.</p></div>
-            <div><span>ARCHITECTURE</span><p>React.js and TypeScript interface; Node.js services; PostgreSQL with pgvector; GPT-4 and LangChain RAG pipeline.</p></div>
-            <div><span>ENGINEERING</span><p>JWT authentication, RBAC and per-tenant data isolation from schema through UI. Exponential backoff, request batching and circuit breakers around LLM integration.</p></div>
-            <div><span>OUTCOME</span><p><strong>60% better retrieval relevance</strong> using cosine similarity and semantic embeddings.</p></div>
-          </div>
+    <!-- 5 · WORK (horizontal) -->
+    <section class="scene hscene" id="work" data-chapter="Work" aria-label="Selected work">
+      <div class="stage h-stage">
+        <div class="h-track" id="hTrack">
+          <div class="h-intro"><p class="mono">Selected work</p><h2>Results,<br>not <span>responsibilities.</span></h2><p class="hint mono">Keep scrolling →</p></div>
+          <article class="card"><p class="metric">$2M+</p><h3>Fraud detection</h3><p>Random Forest served through FastAPI at sub-50 ms. False positives down 25% through feature engineering.</p><p class="tags mono">Python · FastAPI · scikit-learn</p></article>
+          <article class="card"><p class="metric">−40%</p><h3>Self-healing operations</h3><p>Event-driven auto-remediation over 1M+ daily APM metrics. MTTR cut 40%, 750+ engineering hours saved a year.</p><p class="tags mono">Python · Lambda · SNS · Dynatrace</p></article>
+          <article class="card"><p class="metric">500→300<small>ms</small></p><h3>P99 latency</h3><p>Redis caching, N+1 elimination, composite indexing and async processing on the core transaction path.</p><p class="tags mono">Spring Boot · PostgreSQL · Redis</p></article>
+          <article class="card"><p class="metric">−15%</p><h3>Cloud cost</h3><p>Led the move to AWS EKS — multi-AZ, Terraform, Helm, custom-metric autoscaling — while holding a 99.9% uptime SLA.</p><p class="tags mono">AWS · Kubernetes · Terraform</p></article>
+          <article class="card"><p class="metric">−35%<small>memory</small></p><h3>Java → Go rewrite</h3><p>Replaced a bottlenecked notification and event-routing service with goroutines and channels for better peak concurrency.</p><p class="tags mono">Go · Gin · Kafka</p></article>
+          <article class="card"><p class="metric">+60%<small>relevance</small></p><h3>GenAI decision support</h3><p>Multi-tenant SaaS with a RAG pipeline — GPT-4, LangChain, pgvector — built with production LLM resilience.</p><p class="tags mono">React · Node.js · pgvector · GPT-4</p></article>
         </div>
-      </div>
-      <div class="ai-signals">
-        <article><span>PRODUCTION INFERENCE</span><strong>Sub-50ms</strong><p>Random Forest fraud detection via Python FastAPI</p></article>
-        <article><span>FALSE POSITIVES</span><strong>−25%</strong><p>Reduction from the fraud-detection pipeline</p></article>
-        <article><span>LOSS PREVENTION</span><strong>$2M+</strong><p>Annual fraudulent transactions prevented</p></article>
-      </div>
-      <div class="ai-case ai-case--ops">
-        <div class="ai-case__index">CASE / 02<br><span>AUTOMATED AI-OPS PLATFORM</span></div>
-        <div class="ai-case__body">
-          <h3>Turn operational signals into recovery.</h3>
-          <div class="case-detail-grid">
-            <div><span>PROBLEM</span><p>Detect infrastructure anomalies and move from monitoring signals to remediation at production scale.</p></div>
-            <div><span>ARCHITECTURE</span><p>Flask and REST APIs ingest APM metrics; AWS Lambda and SNS support event-driven detection and remediation.</p></div>
-            <div><span>ENGINEERING</span><p>A Go metric aggregation service reduced cold-start frequency 20%. Lambda cold-start time was optimized from 3 seconds to under 500ms.</p></div>
-            <div><span>OUTCOME</span><p><strong>1M+ daily metrics processed</strong>; self-healing workflows cut MTTR 40% and saved 750+ engineering hours annually.</p></div>
-          </div>
-        </div>
+        <div class="h-progress" aria-hidden="true"><span id="hBar"></span></div>
       </div>
     </section>
 
-    <section class="section toolbox-section" id="toolbox" aria-labelledby="toolbox-title">
-      <div class="section-kicker"><span>07</span><span>Toolbox</span><i></i><span>Tools used in the work</span></div>
-      <div class="toolbox-heading">
-        <h2 class="display-heading reveal-x" id="toolbox-title">A system is<br><span>more than its stack.</span></h2>
-        <p>Languages, platforms and operating tools grouped by the work they support.</p>
+    <!-- 6 · PATH -->
+    <section class="path" id="path" data-chapter="Path" aria-labelledby="path-title">
+      <h2 class="section-title reveal" id="path-title">The path.</h2>
+      <div class="path-row reveal">
+        <p class="mono when">Jun 2026 — Now</p>
+        <div><h3>Senior Software Engineer, Empower</h3><p>Full-stack features and API-first architecture for a retirement platform serving 18M+ participants — React and Angular on top, event-driven contribution processing underneath.</p></div>
       </div>
-      <div class="toolbox-grid">
-        <article class="tool-group tool-group--languages" data-tool-group aria-label="Languages"><span class="tool-index">01</span><h3>Languages</h3><div class="tool-items"><span>Java</span><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>Go</span><span>SQL</span></div></article>
-        <article class="tool-group tool-group--frontend" data-tool-group><span class="tool-index">02</span><h3>Frontend</h3><div class="tool-items"><span>React.js</span><span>Angular</span><span>Redux</span><span>Next.js</span><span>Webpack</span><span>Jest</span></div></article>
-        <article class="tool-group tool-group--backend" data-tool-group><span class="tool-index">03</span><h3>Backend</h3><div class="tool-items"><span>Spring Boot</span><span>Spring Cloud</span><span>Node.js</span><span>Express.js</span><span>FastAPI</span><span>Flask</span><span>Go (Gin)</span><span>GraphQL</span><span>gRPC</span></div></article>
-        <article class="tool-group tool-group--distributed" data-tool-group><span class="tool-index">04</span><h3>Distributed systems</h3><div class="tool-items"><span>Apache Kafka</span><span>Kafka Streams</span><span>RabbitMQ</span><span>Microservices</span><span>CQRS</span><span>Event sourcing</span></div></article>
-        <article class="tool-group tool-group--cloud" data-tool-group><span class="tool-index">05</span><h3>Cloud &amp; delivery</h3><div class="tool-items"><span>AWS EKS</span><span>Lambda</span><span>EC2</span><span>S3</span><span>Docker</span><span>Kubernetes</span><span>Terraform</span><span>Helm</span><span>CI/CD</span></div></article>
-        <article class="tool-group tool-group--data" data-tool-group><span class="tool-index">06</span><h3>Data</h3><div class="tool-items"><span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span><span>Redis</span><span>pgvector</span></div></article>
-        <article class="tool-group tool-group--ai" data-tool-group><span class="tool-index">07</span><h3>AI / ML</h3><div class="tool-items"><span>OpenAI API</span><span>GPT-4</span><span>LangChain</span><span>RAG</span><span>NLP</span><span>scikit-learn</span><span>Vector DBs</span></div></article>
-        <article class="tool-group tool-group--observability" data-tool-group><span class="tool-index">08</span><h3>Observability</h3><div class="tool-items"><span>Prometheus</span><span>Grafana</span><span>ELK Stack</span><span>Zipkin</span><span>Dynatrace</span></div></article>
+      <div class="path-row reveal">
+        <p class="mono when">Jun 2022 — May 2026</p>
+        <div><h3>Software Development Engineer II, FIS</h3><p>Transaction processing, fraud detection and cloud infrastructure on the Modern Banking Platform. Mentored three engineers and set the team’s testing and API standards.</p></div>
       </div>
-    </section>
-
-    <section class="section education-section" id="education" aria-labelledby="education-title">
-      <div class="section-kicker"><span>08</span><span>Education</span><i></i><span>Foundations &amp; credentials</span></div>
-      <h2 class="display-heading reveal-x" id="education-title">Built on<br><span>strong foundations.</span></h2>
-      <div class="education-grid">
-        <article class="education-entry"><span>2018 — 2022</span><h3>Bachelor of Engineering<br>Computer Engineering</h3><p>Savitribai Phule Pune University</p><strong>CGPA 9.33 / 10 <i>·</i> First Class with Distinction</strong></article>
-        <article class="education-entry education-entry--certs"><span>PROFESSIONAL CERTIFICATIONS</span><ul><li>AWS Certified Solutions Architect – Associate</li><li>Certified Product Manager (CPM)</li><li>Google Data Analytics Professional Certificate</li></ul></article>
+      <div class="path-row reveal">
+        <p class="mono when">2018 — 2022</p>
+        <div><h3>B.E. Computer Engineering, SPPU</h3><p>CGPA 9.33 / 10 with distinction. AWS Certified Solutions Architect – Associate.</p></div>
       </div>
     </section>
 
-    <section class="contact-section" id="contact" aria-labelledby="contact-title">
-      <div class="section-kicker"><span>09</span><span>Contact</span><i></i><span>Pune, India</span></div>
-      <div class="contact-layout">
-        <div><p class="mono-overline">HAVE A SYSTEM TO BUILD?</p><h2 class="display-heading" id="contact-title">Let’s make<br><span>it dependable.</span></h2></div>
-        <div class="contact-links">
-          <a href="mailto:pardeshi.soham2@gmail.com"><span>EMAIL</span><strong>pardeshi.soham2@gmail.com</strong><b aria-hidden="true">↗</b></a>
-          <a href="https://linkedin.com/in/soham-pardeshi" target="_blank" rel="noopener noreferrer"><span>LINKEDIN</span><strong>linkedin.com/in/soham-pardeshi</strong><b aria-hidden="true">↗</b></a>
-          <a href="https://github.com/SohamPardeshi3" target="_blank" rel="noopener noreferrer"><span>GITHUB</span><strong>github.com/SohamPardeshi3</strong><b aria-hidden="true">↗</b></a>
-        </div>
+    <!-- 7 · LAB -->
+    <section class="lab" id="lab" data-chapter="Lab" aria-labelledby="lab-title">
+      <h2 class="section-title reveal" id="lab-title">Small systems.<br><span>Serious details.</span></h2>
+      <ul class="lab-list">
+        <li class="reveal"><a href="https://github.com/SohamPardeshi3/durable-kv"><span class="name">durable-kv</span><span class="desc">Embedded Rust key-value store with a checksummed write-ahead log and a real SIGKILL crash-recovery test.</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li class="reveal"><a href="https://github.com/SohamPardeshi3/txn-risk-console"><span class="name">txn-risk-console</span><span class="desc">Real-time transaction anomaly detection with a live React console over WebSockets.</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li class="reveal"><a href="https://github.com/SohamPardeshi3/mcp-tool-guard"><span class="name">mcp-tool-guard</span><span class="desc">Cost-aware rate limiting and call deduplication for MCP servers.</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li class="reveal"><a href="https://github.com/SohamPardeshi3/distributed-rate-limiter"><span class="name">distributed-rate-limiter</span><span class="desc">Token-bucket limiter with atomic Redis Lua scripts, correct under concurrent multi-instance access.</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li class="reveal"><a href="https://github.com/SohamPardeshi3/idempotent-request-handler"><span class="name">idempotent-request-handler</span><span class="desc">Redis-backed idempotency guard that rejects key reuse with mismatched payloads.</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+      </ul>
+    </section>
+
+    <!-- 8 · CONTACT -->
+    <section class="contact" id="contact" data-chapter="Contact" aria-labelledby="contact-title">
+      <div class="marquee" aria-hidden="true">
+        <div class="mrow" data-speed="-1"><span>Java · Spring Boot · Kafka · PostgreSQL · Redis · AWS · Kubernetes · Terraform · </span><span>Java · Spring Boot · Kafka · PostgreSQL · Redis · AWS · Kubernetes · Terraform · </span></div>
+        <div class="mrow" data-speed="1"><span>React · TypeScript · Angular · Python · Go · FastAPI · LangChain · pgvector · RAG · </span><span>React · TypeScript · Angular · Python · Go · FastAPI · LangChain · pgvector · RAG · </span></div>
       </div>
-      <footer class="site-footer"><a class="brand brand--footer" href="#hero"><span>SP</span><i></i></a><span>SOHAM PARDESHI <i>·</i> SOFTWARE ENGINEER</span><span>DESIGNED AROUND SYSTEMS IN MOTION</span><a href="#hero">BACK TO TOP ↑</a></footer>
+      <h2 class="contact-title reveal" id="contact-title">Let’s build something<br><span>dependable.</span></h2>
+      <a class="mail reveal" href="mailto:pardeshi.soham2@gmail.com">pardeshi.soham2@gmail.com</a>
+      <p class="links mono reveal"><a href="https://linkedin.com/in/soham-pardeshi">LinkedIn ↗</a><a href="https://github.com/SohamPardeshi3">GitHub ↗</a></p>
+      <p class="foot mono">© Soham Pardeshi · Pune, India</p>
     </section>
   </main>
-  <script src="script.js?v=portfolio-redesign-1" defer></script>
+  <script src="script.js?v=2" defer></script>
 </body>
 </html>
-

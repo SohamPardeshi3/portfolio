@@ -1,26 +1,24 @@
 # Soham Pardeshi — Portfolio
 
-A static, single-page portfolio for Soham Pardeshi, Senior Software Engineer. Built with plain HTML, CSS and JavaScript for GitHub Pages; no build step or runtime framework is required.
+A static single-page portfolio. Plain HTML, CSS and JavaScript — no build step, no libraries. Deploys as-is to GitHub Pages.
 
-## Design
+## Structure
 
-The portfolio is framed around **systems in motion**: editorial typography, a graphite-and-amber palette, precise technical labels and diagrams that make engineering work legible.
+Eight scroll chapters, each with one idea:
 
-- A responsive fixed navigation with active section and scroll progress.
-- A motion-led hero with a lightweight SVG signal network.
-- Production scale metrics drawn from the résumé.
-- A pinned, scroll-driven architecture story for the monolith-to-microservices migration.
-- An always-readable experience timeline, AI/ML case studies and grouped technical toolbox.
-- Five statically rendered GitHub projects. Repository stars, language and last update are progressively enhanced from the GitHub API; the links and descriptions remain available if the request fails.
-- Reduced-motion preferences are respected. No animation or UI library is required.
+1. **Intro** — oversized name that scales away as you scroll.
+2. **Story** — one sentence whose words light up with scroll.
+3. **Scale** — four headline numbers that count up, one at a time.
+4. **Migration** — a monolith splits into 12+ services around an event backbone.
+5. **Work** — horizontal scroll of six results-first cards.
+6. **Path** — Empower, FIS, education.
+7. **Lab** — five open-source systems.
+8. **Contact** — scroll-driven stack marquee and links.
+
+## Motion
+
+Scenes are tall sections with a sticky stage. One `requestAnimationFrame` loop reads each scene's scroll progress, eases it, and writes it to a CSS variable (`--p`) or to the DOM. `prefers-reduced-motion` is respected.
 
 ## Run locally
 
-Open index.html directly, or serve the folder:
-
-~~~sh
-python3 -m http.server 8000
-~~~
-
-Then visit http://localhost:8000.
-
+    python3 -m http.server 8000
